@@ -1,8 +1,17 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.tencent.tinker.patch'
 
+Properties props = new Properties()
+props.load(new FileInputStream(file("signing.properties")))
+
+def javaVersion = JavaVersion.VERSION_1_7
+
 android {
     compileSdkVersion 28
+    compileOptions {
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
     defaultConfig {
         applicationId "com.example.lenovo.tinkersample"
         minSdkVersion 15
@@ -10,15 +19,49 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
 
         buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
+        buildConfigField "String", "MESSAGE", "\"I am the base apk\""
+        buildConfigField "String", "PLATFORM", "\"all\""
     }
+
+    //打包配置
+    signingConfigs {
+        release {
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['KEYSTORE_FILE'])
+            storePassword props['KEYSTORE_PASSWORD']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.release
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    packagingOptions {
+        exclude "/META-INF/**"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+
 }
 
 dependencies {
@@ -29,10 +72,16 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    api("com.tencent.tinker:tinker-android-lib:1.9.1")
+    // Maven local cannot handle transist dependencies.
+    implementation("com.tencent.tinker:tinker-android-loader:1.9.1")
     //optional, help to generate the final application
+    annotationProcessor("com.tencent.tinker:tinker-android-anno:1.9.1")
     compileOnly('com.tencent.tinker:tinker-android-anno:1.9.1')
     //tinker's main Android lib
     implementation('com.tencent.tinker:tinker-android-lib:1.9.1')
+
+    implementation "com.android.support:multidex:1.0.1"
 }
 
 def bakPath = file("${buildDir}/bakApk/")
@@ -200,4 +249,5 @@ if (buildWithTinker()) {
             ]
         }
     }
+
 }
