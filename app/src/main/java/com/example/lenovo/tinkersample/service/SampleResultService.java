@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-package com.example.lenovo.tinkersample;
+package com.example.lenovo.tinkersample.service;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import com.example.lenovo.tinkersample.util.Utils;
 import com.tencent.tinker.lib.service.DefaultTinkerResultService;
 import com.tencent.tinker.lib.service.PatchResult;
 import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.lib.util.TinkerServiceInternals;
 
 import java.io.File;
+
 
 /**
  * optional, you can just use DefaultTinkerResultService

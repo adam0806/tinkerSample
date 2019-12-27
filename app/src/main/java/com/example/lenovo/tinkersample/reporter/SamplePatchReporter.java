@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.lenovo.tinkersample;
+package com.example.lenovo.tinkersample.reporter;
 
 import android.content.Context;
 import android.content.Intent;

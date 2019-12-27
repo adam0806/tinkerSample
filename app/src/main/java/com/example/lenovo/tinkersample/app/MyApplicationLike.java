@@ -1,4 +1,4 @@
-package com.example.lenovo.tinkersample;
+package com.example.lenovo.tinkersample.app;
 
 import android.annotation.TargetApi;
 import android.app.Application;
@@ -7,17 +7,17 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.multidex.MultiDex;
 
+import com.example.lenovo.tinkersample.Log.MyLogImp;
+import com.example.lenovo.tinkersample.util.SampleApplicationContext;
+import com.example.lenovo.tinkersample.util.TinkerManager;
 import com.tencent.tinker.anno.DefaultLifeCycle;
+import com.tencent.tinker.entry.DefaultApplicationLike;
 import com.tencent.tinker.lib.tinker.Tinker;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
-import com.tencent.tinker.loader.app.ApplicationLifeCycle;
-import com.tencent.tinker.loader.app.ApplicationLike;
-import com.tencent.tinker.loader.app.DefaultApplicationLike;
-import com.tencent.tinker.loader.app.TinkerApplication;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 @DefaultLifeCycle(
-        application = "com.example.lenovo.thinkersample.MyApplicationLike", //application name to generate
+        application = "com.example.lenovo.tinkersample.app.MyApplication", //application name to generate
         flags = ShareConstants.TINKER_ENABLE_ALL,   //tinkerFlags above
         loadVerifyFlag = false)
 public class MyApplicationLike extends DefaultApplicationLike {

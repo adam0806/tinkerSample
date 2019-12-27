@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.lenovo.tinkersample;
+package com.example.lenovo.tinkersample.app;
+
+
+import com.example.lenovo.tinkersample.BuildConfig;
 
 /**
  * Created by zhangshaowen on 16/6/30.
- * we use BuildInfo instead of {@link BuildInfo} to make less change
+ * we add BaseBuildInfo to loader pattern, so it won't change with patch!
  */
-public class BuildInfo {
-    /**
-     * they are not final, so they won't change with the BuildConfig values!
-     */
-    public static boolean DEBUG        = BuildConfig.DEBUG;
-    public static String  VERSION_NAME = BuildConfig.VERSION_NAME;
-    public static int     VERSION_CODE = BuildConfig.VERSION_CODE;
-
-    public static String MESSAGE       = BuildConfig.MESSAGE;
-    public static String TINKER_ID     = BuildConfig.TINKER_ID;
-    public static String PLATFORM      = BuildConfig.PLATFORM;
-
+public class BaseBuildInfo {
+    public static String TEST_MESSAGE = "I won't change with tinker patch!";
+    public static String BASE_TINKER_ID = BuildConfig.TINKER_ID;
 }

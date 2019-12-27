@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.lenovo.tinkersample;
+package com.example.lenovo.tinkersample.reporter;
 
+import com.example.lenovo.tinkersample.util.Utils;
 import com.tencent.tinker.lib.util.TinkerLog;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
+
 
 /**
  * a simple tinker data reporter

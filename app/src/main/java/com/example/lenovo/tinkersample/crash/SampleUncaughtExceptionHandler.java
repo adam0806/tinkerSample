@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.lenovo.tinkersample;
+package com.example.lenovo.tinkersample.crash;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 
+import com.example.lenovo.tinkersample.reporter.SampleTinkerReport;
+import com.example.lenovo.tinkersample.util.TinkerManager;
+import com.example.lenovo.tinkersample.util.Utils;
+import com.tencent.tinker.entry.ApplicationLike;
 import com.tencent.tinker.lib.tinker.TinkerApplicationHelper;
 import com.tencent.tinker.lib.util.TinkerLog;
-import com.tencent.tinker.loader.app.ApplicationLike;
 import com.tencent.tinker.loader.shareutil.ShareConstants;
 import com.tencent.tinker.loader.shareutil.ShareTinkerInternals;
 
